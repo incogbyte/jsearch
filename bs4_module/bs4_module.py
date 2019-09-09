@@ -20,8 +20,12 @@ class CoreParser():
     def parser_url(self,src_tags):
         parser_url_domain = urlparse(self.url_domain)
         parser_src_tags = urlparse(src_tags)
-    
-        if parser_src_tags.netloc == '':
+        
+        if parser_src_tags.path[0:1] != '/':
+            src_tags = parser_url_domain.scheme + "://" + parser_url_domain.hostname + "/" + parser_src_tags.path
+            self.urls.append(src_tags)
+
+        elif parser_src_tags.netloc == '':
             src_tags = parser_url_domain.scheme + "://" + parser_url_domain.hostname + parser_src_tags.path + "?" +\
                 parser_src_tags.query
             self.urls.append(src_tags)
