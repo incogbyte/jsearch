@@ -7,7 +7,7 @@ from utils_module import colors
 
 class CoreParser():
     
-    def __init__(self, html_doc, url_domain,
+    def __init__(self, html_doc, url_domain, name_target,
     user_agent='Mozilla/5.0 (Macintosh; Intel Mac OS X x.y; rv:42.0) Gecko/20100101 Firefox/42.0'):
         self.html_doc = html_doc
         self.url_domain = url_domain
@@ -15,6 +15,7 @@ class CoreParser():
         self.user_agent = user_agent
         self.urls = []
         self.host = urlparse(url_domain).hostname
+        self.name_target = name_target
 
 
     def parser_url(self,src_tags):
@@ -37,7 +38,7 @@ class CoreParser():
                     
     def get_content_js(self):
         
-        test_conn = requests_module.CoreRequests(self.url_domain)
+        test_conn = requests_module.CoreRequests(self.url_domain, self.name_target)
         if test_conn:
             current_dir = os.getcwd()
             path_save = ""
@@ -61,7 +62,7 @@ class CoreParser():
             try:
                 if url_src_tag[0:2] == "//":
                     url_src_tag = "http:" + url_src_tag
-                print(colors.colors.fg.yellow + f"[INFO] Getting info from: {url_src_tag}" + colors.colors.reset)
+                print(colors.colors.fg.blue + f"[INFO] Getting info from: {url_src_tag}" + colors.colors.reset)
                 r = requests.get(url_src_tag, verify=False, data={'User-Agent:': self.user_agent}, stream=True)
                 content_save = r.content
                 for _,v in regex_modules.REGEX_PATT.items():
@@ -75,11 +76,13 @@ class CoreParser():
                 
                 for url in arrays_match:
                     if "aws" in url:
-                        print(colors.colors.fg.blue + f"[AWS INFO] {url}" + colors.colors.reset)
+                        print(colors.colors.fg.red + f"[AWS INFO] {url}" + colors.colors.reset)
                     elif self.host in url:
-                        print(colors.colors.fg.cyan + f"[DOMAIN INFO] {url}" + colors.colors.reset)
+                        print(colors.colors.fg.orange + f"[DOMAIN INFO] {url}" + colors.colors.reset)
+                    elif self.name_target in url:
+                        print(colors.colors.fg.orange + f"[NAME INFO] {url}" + colors.colors.reset)
                     else:
-                        print(colors.colors.fg.pink + f"[INFO URL] {url}" + colors.colors.reset)
+                        print(colors.colors.fg.blue + f"[INFO URL] {url}" + colors.colors.reset)
                     
                          
 

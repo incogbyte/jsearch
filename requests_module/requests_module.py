@@ -10,10 +10,11 @@ except ConnectionError as e:
     pass
 
 class CoreRequests():
-    def __init__(self, url):
+    def __init__(self, url, name_target):
         self.url = url
         self.output_file = ""
         self.user_agent = 'Mozilla/5.0 (Macintosh; Intel Mac OS X inc0gbyt3; rv:42.0) Gecko/20100101 Firefox/42.0'
+        self.name_target = name_target
 
     def test_connection(self):
         
@@ -32,7 +33,7 @@ class CoreRequests():
         try:
             get_content = requests.get(self.url, data={'User-Agent': self.user_agent}, verify=False)
             if self.test_connection:
-                soup_objt = bs4_module.CoreParser(get_content.text, self.url)
+                soup_objt = bs4_module.CoreParser(get_content.text, self.url,self.name_target)
                 soup_objt.find_all_script()
                 soup_objt.get_content_js()
 
