@@ -33,9 +33,7 @@ class CoreParser():
         else:
             self.urls.append(src_tags)
 
-        
-        
-                    
+            
     def get_content_js(self):
         
         test_conn = requests_module.CoreRequests(self.url_domain, self.name_target)
@@ -81,6 +79,8 @@ class CoreParser():
                         print(colors.colors.fg.orange + f"[DOMAIN INFO] {url}" + colors.colors.reset)
                     elif self.name_target in url:
                         print(colors.colors.fg.orange + f"[NAME INFO] {url}" + colors.colors.reset)
+                    elif "vtex" in url:
+                        print(colors.colors.fg.red + f"[VTEX INFO] {url}" + colors.colors.reset)
                     else:
                         print(colors.colors.fg.blue + f"[INFO URL] {url}" + colors.colors.reset)
                     
