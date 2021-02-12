@@ -15,4 +15,4 @@ python3 jsearch.py -h
 
 * 
 
-![teste_jsearch1](teste_jesearch1.gif)
+![teste_jsearch1](https://raw.githubusercontent.com/rodnt/jsearch/master/teste_jsearch1.gif)
