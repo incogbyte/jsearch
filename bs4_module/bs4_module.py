@@ -8,7 +8,7 @@ from utils_module import colors
 class CoreParser():
     
     def __init__(self, html_doc, url_domain, name_target,
-    user_agent='Mozilla/5.0 (Macintosh; Intel Mac OS X x.y; rv:42.0) Gecko/20100101 Firefox/42.0'):
+    user_agent='Mozilla/5.0 (Macintosh; Intel Mac OS X v4lak; rv:42.0) Gecko/20100101 Firefox/42.0'):
         self.html_doc = html_doc
         self.url_domain = url_domain
         self.soup = BeautifulSoup(self.html_doc, 'html.parser')
@@ -50,7 +50,7 @@ class CoreParser():
         try:
             os.mkdir(str(dir_name))
             print(f">> Create directory {dir_name}")
-            print(f">> File will be saved at {dir_name}")
+            print(f">> Files will be save at {dir_name}")
         except FileExistsError as e:
             print(f">> {e}")
         

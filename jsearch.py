@@ -4,6 +4,8 @@ import os
 from requests_module import requests_module
 
 
+__AUTHOR__ = "v4lak"
+
 try:
     from bs4 import BeautifulSoup
     import requests

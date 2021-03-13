@@ -13,7 +13,7 @@ class CoreRequests():
     def __init__(self, url, name_target):
         self.url = url
         self.output_file = ""
-        self.user_agent = 'Mozilla/5.0 (Macintosh; Intel Mac OS X inc0gbyt3; rv:42.0) Gecko/20100101 Firefox/42.0'
+        self.user_agent = 'Mozilla/5.0 (Macintosh; Intel Mac OS X v4lak; rv:42.0) Gecko/20100101 Firefox/42.0'
         self.name_target = name_target
 
     def test_connection(self):
